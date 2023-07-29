@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In Form</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <div class="wrapper login">
+    <div class="container">
+      <div class="col-left">
+        <div class="login-text">
+          <h2>Welcome!</h2>
+          <p>Create your account.<br>For Free!</p> <a href="signup.html" class="btn">Sign Up</a>
+        </div>
+      </div>
+      <div class="col-right">
+        <div class="login-form">
+          <h2>Login</h2>
+          <form action="">
+            <p> <label>Username/Email address<span>*</span></label> <input type="text" id="username"
+                placeholder="Username or Email" required> </p>
+            <p> <label>Password<span>*</span></label> <input type="password" id="password" placeholder="Password"
+                required> </p>
+            <p> <label>Enter the pincode<span>*</span></label> <input type="number" id="pincode"
+                placeholder="pincode" required> </p>
+            <p> <label>Address<span>*</span></label> <input type="text" id="Address"
+                  placeholder="Address" required> </p>
+            <p> <input type="submit" onclick="loginuser(event)" value="Sign In"> </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function loginuser(event) {
+    event.preventDefault()
+    let userName = document.getElementById("username").value
+    let password = document.getElementById("password").value
+    const userdetail = {
+      userName: userName,
+      password: password
+    }
+
+
+    const requestOptions = {
+      method: 'POST',
+      body: JSON.stringify(userdetail)
+    };
+    fetch('http://127.0.0.1:5500/login.html', requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          return (window.location.href = "thankyou.html")
+
+        }
+        else {
+          alert("You are new to us")
+        }
+      })
+
+  }
+
+
+
+
+</script>
+
+</html>
